@@ -18,6 +18,32 @@ function QuestionList() {
     setQuestions(updatedQuestions);
   };
 
+  const updateQuestion = (id, correctIndex) => {
+    fetch(`http://localhost:4000/questions/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        correctIndex: correctIndex
+      })
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        const updatedQuestions = questions.map((question) => {
+          if (question.id === id) {
+            return {
+              ...question,
+              correctIndex: correctIndex
+            };
+          }
+          return question;
+        });
+        setQuestions(updatedQuestions);
+      })
+      .catch((err) => console.error(err));
+  };
+
   return (
     <section>
       <h1>Quiz Questions</h1>
@@ -28,6 +54,7 @@ function QuestionList() {
               key={question.id}
               question={question}
               onDelete={deleteQuestion}
+              onCorrectAnswerChange={(correctIndex) => updateQuestion(question.id, correctIndex)}
             />
           );
         })}
