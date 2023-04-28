@@ -65,17 +65,6 @@
         "controlled"
       ],
       "correctIndex": 1
-    },
-    {
-      "prompt": "Which is the Largest City in Kenya?",
-      "answers": [
-        "Nakuru",
-        "Nairobi",
-        "Kisumu",
-        "Nyeri"
-      ],
-      "correctIndex": 0,
-      "id": 7
     }
   ]
 }
